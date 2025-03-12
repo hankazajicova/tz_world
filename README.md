@@ -4,12 +4,12 @@
 Simple API to get the timezone of a given location and to list all the timezones.
 
 ## API Endpoint
-- **GET** /timezones
+- **GET** `/timezones`
   - **Description**: Get all available timezones
   - **Query Params**:
     - **Description**: When provided, the API will return the timezone of the given location
-    - **lat**: Latitude of the location
-    - **lon**: Longitude of the location
+    - `lat`: Latitude of the location
+    - `lon`: Longitude of the location
   - **Response**:
     - **200**: The timezone of the given location or all available timezones
     - **400**: Invalid parameters
@@ -96,7 +96,7 @@ $ ruff format         # Format all files in the current directory.
 - Setup production settings
 - Setup CI/CD pipeline
 - Setup monitoring, logging and alerting
-- Setup security measures ?
+- Setup security measures
 - Setup production database and infrastructure with backups
 - Add more tests to cover more scenarios
 - Add caching to reduce the response time
