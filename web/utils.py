@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 from rest_framework.response import Response
 
@@ -10,11 +9,11 @@ def _get_value_from_request(request, key, default=None):
     return request.GET.get(key, default)
 
 
-def _is_valid_lat_lon(lat: Optional[float], lon: Optional[float]) -> bool:
+def _is_valid_lat_lon(lat: float, lon: float) -> bool:
     return -90 <= lat <= 90 and -180 <= lon <= 180
 
 
-def _check_lat_lon(lat: Optional[float], lon: Optional[float]) -> tuple[bool, Optional[str]]:
+def _check_lat_lon(lat: float | None, lon: float | None) -> tuple[bool, str | None]:
     if lat is None and lon is None:
         return False, None
 
@@ -24,7 +23,7 @@ def _check_lat_lon(lat: Optional[float], lon: Optional[float]) -> tuple[bool, Op
     return True, None
 
 
-def _try_float_or_none(value: str) -> Optional[float]:
+def _try_float_or_none(value: str) -> float | None:
     try:
         return float(value) if value else None
     except ValueError:
