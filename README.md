@@ -23,7 +23,7 @@ The following technologies are used:
 - Django Rest Framework (REST API framework for Django)
 - PostgreSQL (Database)
 - PostGIS (Spatial extension for PostgreSQL)
-- Libraries for spatial data processing - TBD
+- [Geospatial Libraries](https://docs.djangoproject.com/en/5.1/ref/contrib/gis/install/geolibs/) - GEOS, PROJ, GDAL
 
 ## How to run
 1. Clone the repository
