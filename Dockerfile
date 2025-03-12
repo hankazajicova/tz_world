@@ -1,9 +1,5 @@
 FROM ubuntu:22.04
 
-# # Set environment variables
-# ENV PYTHONDONTWRITEBYTECODE 1
-# ENV PYTHONUNBUFFERED 1
-
 RUN apt update && \ 
     apt install python3.11 python3-pip binutils libproj-dev gdal-bin -y && \
     pip install --upgrade pip

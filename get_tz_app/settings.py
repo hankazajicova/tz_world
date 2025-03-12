@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure--k=_3k8s782112i9nze0on1c9s4o(6scnm@*st(j5@3uy8z+9j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']  # For DEV env only
 
 
 # Application definition
@@ -109,6 +109,7 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
+        # Enable only for debugging of DB requests
         # 'django.db.backends': {
         #     'level': 'DEBUG',
         #     'handlers': ['console'],
@@ -159,6 +160,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# Spatial files
+
 TZ_SHAPEFILE_URL = 'http://efele.net/maps/tz/world/tz_world.zip'
-TZ_SHAPEFILE_TEMP = '/tmp'
 SHP_FILE_EXT = '.shp'
+EPSG_WGS84 = 4326
