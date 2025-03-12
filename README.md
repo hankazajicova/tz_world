@@ -28,15 +28,17 @@ The following technologies are used:
 ## How to run
 1. Clone the repository
 
-2. Run the following command to start the server
-```bash
-$ docker compose up --build -d
-```
-3. The server will be running on http://localhost:8000
+2. Create a `.env` file in the root directory of the project with the generated values for keys given in `.env.dist` file
 
-4. To get all available timezones, make a GET request to http://localhost:8000/timezones
+3. Run the following command to start the server
+    ```bash
+    $ docker compose up --build -d
+    ```
+4. The server will be running on http://localhost:8000
 
-5. To get the timezone of a given location, make a GET request to http://localhost:8000/timezones?lat={latitude}&lon={longitude}
+5. To get all available timezones, make a GET request to http://localhost:8000/timezones
+
+6. To get the timezone of a given location, make a GET request to http://localhost:8000/timezones?lat={latitude}&lon={longtitude}
 
 ## Methodology
 ### Timezone identification
