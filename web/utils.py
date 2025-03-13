@@ -1,7 +1,8 @@
 import logging
 
-from rest_framework.response import Response
+from django.conf import settings
 from rest_framework.request import Request
+from rest_framework.response import Response
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +18,9 @@ def handle_error_response(error_message: str) -> Response:
 
 
 def is_valid_lat_lon(lat: float, lon: float) -> bool:
-    return -90 <= lat <= 90 and -180 <= lon <= 180
+    return (
+        settings.MIN_LAT <= lat <= settings.MAX_LAT and settings.MIN_LON <= lon <= settings.MAX_LON
+    )
 
 
 def try_float_or_none(value: str) -> float | None:

@@ -20,10 +20,14 @@ def get_general_timezones(apps, schema_editor):
     logger.info('Starting to create general timezones')
     TimezoneGeneral = apps.get_model('web', 'TimezoneGeneral')
 
-    meridian = 180
-    utc_hours = 12
-    while utc_hours >= -12:
-        step = 7.5 if meridian == 180 or meridian == -172.5 else 15
+    meridian = settings.MAX_LON
+    utc_hours = settings.MAX_UTC_HOURS
+    while utc_hours >= settings.MIN_UTC_HOURS:
+        step = (
+            settings.MIN_LON_STEP
+            if meridian == settings.MAX_LON or meridian == settings.MIN_LON + settings.MIN_LON_STEP
+            else settings.MAX_LON_STEP
+        )
         name = f'UTC+{utc_hours}' if utc_hours >= 0 else f'UTC{utc_hours}'
 
         general_timezone = TimezoneGeneral(

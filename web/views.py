@@ -21,8 +21,6 @@ logger = logging.getLogger(__name__)
 
 
 class TimezoneViewSet(viewsets.ViewSet):
-    UNINHABITED = 'uninhabited'
-    TERRITORIAL_SEA_RADIUS = 12  # nautical miles
 
     def list(self, request):
         lat, lon = self._get_lat_lon_from_request(request)
@@ -64,7 +62,7 @@ class TimezoneViewSet(viewsets.ViewSet):
     def _list_all_timezones(self) -> list:
         items = list(
             itertools.chain(
-                TimezoneShape.objects.exclude(name=self.UNINHABITED).distinct('name'),
+                TimezoneShape.objects.exclude(name=settings.UNINHABITED).distinct('name'),
                 TimezoneGeneral.objects.all(),
             )
         )
@@ -79,7 +77,7 @@ class TimezoneViewSet(viewsets.ViewSet):
         # Check if the point is in the shapefile or within the territorial sea
         item = (
             TimezoneShape.objects.filter(
-                poly__distance_lte=(point, D(nm=self.TERRITORIAL_SEA_RADIUS))
+                poly__distance_lte=(point, D(nm=settings.TERRITORIAL_SEA_RADIUS))
             )
             .annotate(distance=Distance('poly', point))
             .order_by('distance')
@@ -87,7 +85,7 @@ class TimezoneViewSet(viewsets.ViewSet):
         )
 
         location_message = 'in territorial sea' if item and item.distance.m > 0 else 'on land'
-        is_uninhabited = item.name == self.UNINHABITED if item else False
+        is_uninhabited = item.name == settings.UNINHABITED if item else False
 
         if not item or is_uninhabited:
             item = TimezoneGeneral.objects.filter(long_min__lte=lon, long_max__gte=lon).first()

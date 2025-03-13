@@ -160,8 +160,19 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Spatial files
+# Spatial properties
 
 TZ_SHAPEFILE_URL = 'http://efele.net/maps/tz/world/tz_world.zip'
 SHP_FILE_EXT = '.shp'
 EPSG_WGS84 = 4326
+UNINHABITED = 'uninhabited'
+TERRITORIAL_SEA_RADIUS = 12  # nautical miles
+
+MAX_LAT = 90
+MIN_LAT = -90
+MAX_LON = 180
+MIN_LON = -180
+MIN_LON_STEP = 7.5
+MAX_LON_STEP = 15
+MAX_UTC_HOURS = 12
+MIN_UTC_HOURS = -12
